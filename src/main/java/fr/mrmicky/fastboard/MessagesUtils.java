@@ -1,4 +1,4 @@
-package fr.mrmicky.fastboard.utils;
+package fr.mrmicky.fastboard;
 
 import org.bukkit.ChatColor;
 

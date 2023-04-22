@@ -23,7 +23,6 @@
  */
 package fr.mrmicky.fastboard;
 
-import fr.mrmicky.fastboard.utils.MessagesUtils;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
