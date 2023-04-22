@@ -23,6 +23,8 @@
  */
 package fr.mrmicky.fastboard;
 
+import fr.mrmicky.fastboard.utils.MessagesUtils;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -316,7 +318,6 @@ public class FastBoard {
     public synchronized void updateLines(Collection<String> lines) {
         Objects.requireNonNull(lines, "lines");
         checkLineNumber(lines.size(), false, true);
-
         if (!VersionType.V1_13.isHigherOrEqual()) {
             int lineCount = 0;
             for (String s : lines) {
@@ -326,7 +327,15 @@ public class FastBoard {
                 lineCount++;
             }
         }
-
+        Collection<String> modifiedLines = new ArrayList<>();
+        for (String s : lines) {
+            try {
+                modifiedLines.add(MessagesUtils.format(PlaceholderAPI.setPlaceholders(player,s)));
+            }catch (Exception e){
+                modifiedLines.add(MessagesUtils.format(s));
+            }
+        }
+        lines = modifiedLines;
         List<String> oldLines = new ArrayList<>(this.lines);
         this.lines.clear();
         this.lines.addAll(lines);
